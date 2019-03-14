@@ -12,6 +12,6 @@ import java.util.HashMap;
 public class Model implements Contract.IModel {
     @Override
     public void LoadingModel(HashMap<String, String> params, RequestCallback callback) {
-         RetrofitUtils.getIntenter().createService(LadingBean.class);
+
     }
 }

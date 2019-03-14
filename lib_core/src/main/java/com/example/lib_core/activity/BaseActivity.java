@@ -7,13 +7,21 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.gyf.barlibrary.ImmersionBar;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public abstract  class BaseActivity extends AppCompatActivity {
+
+    private Unbinder bind;
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-
         ImmersionBar.with(this).init();
+        bind = ButterKnife.bind(this);
+
+
         initView();
         initData();
     }

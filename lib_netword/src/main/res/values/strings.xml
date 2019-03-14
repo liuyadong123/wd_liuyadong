@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">lib_netword</string>
+    <string name="connect_error" />
+    <string name="connect_timeout" />
+    <string name="bad_network" />
+    <string name="parse_error" />
+    <string name="unknown_error" />
 </resources>

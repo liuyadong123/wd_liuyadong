@@ -10,7 +10,14 @@ import android.view.ViewGroup;
 
 import com.gyf.barlibrary.ImmersionBar;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public abstract class BaseFragment extends Fragment {
+
+    private Unbinder bind;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -18,6 +25,7 @@ public abstract class BaseFragment extends Fragment {
          initView(view);
          initData();
         ImmersionBar.with(this).init();
+        bind = ButterKnife.bind(getActivity());
         return view;
     }
 

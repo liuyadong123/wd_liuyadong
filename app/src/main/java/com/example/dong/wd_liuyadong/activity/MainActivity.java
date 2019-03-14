@@ -26,11 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+
 import butterknife.Unbinder;
 
 public class MainActivity extends UActivity<Contract.IModel,Contract.presenterContract> implements Contract.IView {
-    private Unbinder bind;
+
     @BindView(R.id.viewpager)
     ViewPager pager;
     @BindView(R.id.yd1)
@@ -41,6 +41,8 @@ public class MainActivity extends UActivity<Contract.IModel,Contract.presenterCo
     RadioButton yd3;
     @BindView(R.id.yd4)
     RadioButton yd4;
+    @BindView(R.id.yd5)
+    RadioButton yd5;
     @BindView(R.id.group)
     RadioGroup group;
     private List<View> list;
@@ -51,14 +53,14 @@ public class MainActivity extends UActivity<Contract.IModel,Contract.presenterCo
 
     @Override
     protected void initView() {
-        bind = ButterKnife.bind(this);
+
         CrashReport.initCrashReport(getApplicationContext());
         sharedPreferences = getSharedPreferences("uerer", MODE_PRIVATE);
         edit = sharedPreferences.edit();
         boolean zd = sharedPreferences.getBoolean("zd", false);
 
         if (zd){
-            startActivity(new Intent(MainActivity.this,FragmentActivity.class));
+            startActivity(new Intent(MainActivity.this,LadingActivity.class));
             finish();
         }
 
@@ -69,6 +71,7 @@ public class MainActivity extends UActivity<Contract.IModel,Contract.presenterCo
         list.add(layoutInflater.inflate(R.layout.item2,null));
         list.add(layoutInflater.inflate(R.layout.item3,null));
         list.add(layoutInflater.inflate(R.layout.item4,null));
+        list.add(layoutInflater.inflate(R.layout.item5,null));
 
         group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -86,11 +89,14 @@ public class MainActivity extends UActivity<Contract.IModel,Contract.presenterCo
                             break;
                         case R.id.yd4:
                             pager.setCurrentItem(3);
-                            edit.putBoolean("zd",true);
-                            edit.commit();
-                            startActivity(new Intent(MainActivity.this,FragmentActivity.class));
-                            finish();
                             break;
+                    case R.id.yd5:
+                        pager.setCurrentItem(4);
+                        edit.putBoolean("zd",true);
+                        edit.commit();
+                        startActivity(new Intent(MainActivity.this,LadingActivity.class));
+                        finish();
+                        break;
 
 
                 }
@@ -121,6 +127,9 @@ public class MainActivity extends UActivity<Contract.IModel,Contract.presenterCo
                   case 3:
                       yd4.setChecked(true);
                       break;
+                  case 4:
+                      yd5.setChecked(true);
+                      break;
 
               }
 
@@ -144,10 +153,7 @@ public class MainActivity extends UActivity<Contract.IModel,Contract.presenterCo
         return R.layout.activity_main;
     }
 
-    @Override
-    public void LoadingSuccess(LadingBean ladingBean) {
 
-    }
 
     @Override
     public UPresenter inUPresenter() {
@@ -159,4 +165,9 @@ public class MainActivity extends UActivity<Contract.IModel,Contract.presenterCo
 
     }
 
+
+    @Override
+    public void Success(Object o) {
+
+    }
 }

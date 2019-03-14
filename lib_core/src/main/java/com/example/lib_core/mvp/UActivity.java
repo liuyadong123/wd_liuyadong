@@ -22,6 +22,4 @@ public abstract class UActivity<M extends UModel,P extends  UPresenter> extends 
         super.onDestroy();
         presenter.deattach();
     }
-
-
 }

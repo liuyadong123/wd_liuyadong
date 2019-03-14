@@ -26,7 +26,7 @@ public interface Contract {
        void  LoadingModel(HashMap<String,String> params , RequestCallback callback);
     }
     interface  IView extends UView {
-        void LoadingSuccess(LadingBean ladingBean);
+        void Success(Object o);
     }
 
 }

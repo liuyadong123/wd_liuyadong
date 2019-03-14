@@ -29,7 +29,7 @@ public class RetrofitUtils {
 
         retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl(Api.BASE_API)
+                .baseUrl(Api.USER_API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
