@@ -2,9 +2,12 @@ package com.example.dong.wd_liuyadong.model;
 
 import android.annotation.SuppressLint;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.example.dong.wd_liuyadong.api.UserApi;
+import com.example.dong.wd_liuyadong.bean.XiangBean;
 import com.example.dong.wd_liuyadong.contract.LadingContract;
 import com.example.dong.wd_liuyadong.net.RequestCallback;
+import com.example.dong.wd_liuyadong.net.RequestCallbacks;
 import com.example.dong.wd_liuyadong.net.RxRetrofitView;
 import com.example.lib_netword.api.Api;
 import com.example.lib_netword.network.RetrofitUtils;
@@ -44,6 +47,27 @@ public class LadingModel implements LadingContract.LModel {
 
     @Override
     public void huoModel(String userId, String sessionId) {
-        SpUtils.getInternsp().putSp(userId,sessionId);
+        SpUtils.getInternsp().putSp("userId",userId);
+        SpUtils.getInternsp().putSp("sessionId",sessionId);
+
     }
+    @Override
+    public void XiangModel(HashMap<String, String> params, final RequestCallbacks callback) {
+        RetrofitUtils.getIntenter().createService(RxRetrofitView.class)
+                .xiang(UserApi.Xiang_Api,params)
+                .compose(RxUtils.<XiangBean>schdulers())
+                .subscribe(new Consumer<XiangBean>() {
+                    @Override
+                    public void accept(XiangBean xiangBean) throws Exception {
+                        callback.OnSuccess(xiangBean);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        callback.Failure("开小差了");
+                    }
+                });
+    }
+
+
 }

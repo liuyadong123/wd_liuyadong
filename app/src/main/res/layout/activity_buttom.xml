@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ButtomActivity">
+
+    <android.support.v4.view.ViewPager
+         android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </android.support.v4.view.ViewPager>
+
+    <RadioGroup
+        android:id="@+id/groups"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_100"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <RadioButton
+            android:id="@+id/sy1"
+            android:checked="true"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:button="@null"
+            android:background="@drawable/film"
+            />
+        <RadioButton
+            android:id="@+id/sy2"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginHorizontal="@dimen/dp_80"
+            android:button="@null"
+            android:layout_toLeftOf="@id/sy3"
+            android:background="@drawable/cinema"
+            />
+        <RadioButton
+            android:id="@+id/sy3"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:button="@null"
+            android:background="@drawable/my"
+            />
+
+    </RadioGroup>
+
+</RelativeLayout>

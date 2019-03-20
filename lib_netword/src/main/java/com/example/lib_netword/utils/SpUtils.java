@@ -2,12 +2,8 @@ package com.example.lib_netword.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.renderscript.Sampler;
 
-import com.blankj.utilcode.util.SPUtils;
 import com.example.lib_netword.BaseApp;
-
-import java.security.Key;
 
 public class SpUtils {
 
@@ -37,10 +33,15 @@ public class SpUtils {
       return  null;
     }
 
-    public  void putSp(String Key,String Value){
+    public  void putSp(String Key, String Value){
         getSp().edit().putString(Key,Value).commit();
     }
+
     public String getSp(String key){
-            return getSp().getString(key,"");
+        return getSp().getString(key,"");
+    }
+
+    public boolean getbooleanSp(String key){
+        return getSp().getBoolean(key,false);
     }
 }

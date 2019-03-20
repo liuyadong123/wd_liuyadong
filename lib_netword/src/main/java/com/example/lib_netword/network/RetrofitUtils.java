@@ -20,8 +20,8 @@ public class RetrofitUtils {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient okHttpClient =new OkHttpClient
                 .Builder()
-                .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor(new HeaderInteract())
+                .addInterceptor(httpLoggingInterceptor)
                 .connectTimeout(5,TimeUnit.SECONDS)
                 .readTimeout(5,TimeUnit.SECONDS)
                 .writeTimeout(5,TimeUnit.SECONDS)
@@ -29,7 +29,7 @@ public class RetrofitUtils {
 
         retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl(Api.USER_API)
+                .baseUrl(Api.BASE_API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();

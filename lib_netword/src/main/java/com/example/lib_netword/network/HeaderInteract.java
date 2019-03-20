@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.SPUtils;
 import com.example.lib_netword.utils.SpUtils;
 
 import java.io.IOException;
+import java.security.cert.CertPathBuilder;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -17,13 +18,22 @@ public class HeaderInteract implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        request.newBuilder()
-                .addHeader("userId",SpUtils.getInternsp().getSp("userId"))
-                .addHeader("sessionId",SpUtils.getInternsp().getSp("sessionId"))
-                .build();
+        Request.Builder build = request.newBuilder();
+        Request build1;
 
-        Response proceed = chain.proceed(request);
+        if (SpUtils.getInternsp().getbooleanSp("cheapi")) {
+            build1 = build.addHeader("userId", SpUtils.getInternsp().getSp("userId"))
+                    .addHeader("sessionId", SpUtils.getInternsp().getSp("sessionId"))
+                    .build();
+
+        } else {
+            build1 = build.build();
+        }
+
+        Response proceed = chain.proceed(build1);
 
         return proceed;
     }
+
+
 }

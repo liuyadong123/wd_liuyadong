@@ -16,17 +16,24 @@ import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
 
-    private Unbinder bind;
+
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(getLayoutid(), container, false);
-         initView(view);
-         initData();
-        ImmersionBar.with(this).init();
-        bind = ButterKnife.bind(getActivity());
+        ButterKnife.bind(this,view);
+        ImmersionBar.with(getActivity()).init();
         return view;
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initData();
+        initView(view);
+
+
     }
 
     protected abstract void initData();

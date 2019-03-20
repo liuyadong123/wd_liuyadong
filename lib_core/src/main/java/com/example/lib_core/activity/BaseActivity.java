@@ -21,10 +21,11 @@ public abstract  class BaseActivity extends AppCompatActivity {
         ImmersionBar.with(this).init();
         bind = ButterKnife.bind(this);
 
-
-        initView();
         initData();
+        initView();
+
     }
+
 
     protected abstract void initData();
 

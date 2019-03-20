@@ -1,5 +1,6 @@
 package com.example.dong.wd_liuyadong.activity;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.dong.wd_liuyadong.presenter.RegsterPresenter;
 import com.example.dong.wd_liuyadong.utils.EncryptUtil;
 import com.example.lib_core.mvp.UActivity;
 import com.example.lib_core.mvp.UPresenter;
+import com.example.lib_netword.utils.SpUtils;
 
 import java.util.HashMap;
 
@@ -42,8 +44,9 @@ public class RegisterActivity extends UActivity<RegisterContract.LModel,Register
     EditText pwds;
     @BindView(R.id.zhu)
     Button zhuce;
+    private SharedPreferences sp;
 
-   @Override
+    @Override
    protected void initData() {
       super.initData();
 
@@ -51,6 +54,8 @@ public class RegisterActivity extends UActivity<RegisterContract.LModel,Register
 
    @Override
     protected void initView() {
+        sp = SpUtils.getInternsp().getSp();
+        sp.edit().putBoolean("cheapi",false).commit();
      zhuce.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
@@ -65,7 +70,11 @@ public class RegisterActivity extends UActivity<RegisterContract.LModel,Register
              String encrypt1 = EncryptUtil.encrypt(s1);
              HashMap<String,String> params =new HashMap<>();
              params.put("nickName",names);
-             params.put("sex",sexs);
+             if (sex.getText().toString().equals("男")){
+                 params.put("sex",1+"");
+             }else if(sex.getText().toString().equals("女")){
+                 params.put("sex",2+"");
+             }
              params.put("birthday",bordays);
              params.put("phone",phones);
              params.put("email",emails);
@@ -91,13 +100,15 @@ public class RegisterActivity extends UActivity<RegisterContract.LModel,Register
 
     @Override
     public void Failure(String msg) {
-        Toast.makeText(RegisterActivity.this,msg+"",Toast.LENGTH_SHORT).show();
+
 
     }
 
     @Override
     public void RegisterSuccess(RegisterBean registerBean) {
-        Toast.makeText(RegisterActivity.this,registerBean.message+"",Toast.LENGTH_SHORT).show();
+        Toast.makeText(RegisterActivity.this,registerBean.message,Toast.LENGTH_SHORT).show();
 
+        if ("注册成功".equals(registerBean.message))
+        sp.edit().putBoolean("cheapi",true).commit();
     }
 }

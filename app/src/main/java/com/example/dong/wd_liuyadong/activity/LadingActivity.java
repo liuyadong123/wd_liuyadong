@@ -11,9 +11,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.example.dong.wd_liuyadong.R;
 import com.example.dong.wd_liuyadong.bean.LadingBean;
 import com.example.dong.wd_liuyadong.contract.LadingContract;
@@ -21,8 +24,14 @@ import com.example.dong.wd_liuyadong.presenter.LadingPresenter;
 import com.example.dong.wd_liuyadong.utils.EncryptUtil;
 import com.example.lib_core.mvp.UActivity;
 import com.example.lib_core.mvp.UPresenter;
+import com.example.lib_netword.utils.SpUtils;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareConfig;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -41,6 +50,8 @@ public class LadingActivity extends UActivity<LadingContract.LModel,LadingContra
      CheckBox jz;
     @BindView(R.id.zd)
     CheckBox zd;
+    @BindView(R.id.wexin)
+    ImageView weixin;
     private SharedPreferences sp;
 
     private SharedPreferences.Editor edit;
@@ -48,11 +59,13 @@ public class LadingActivity extends UActivity<LadingContract.LModel,LadingContra
     private String s1;
     private String encrypt;
 
+
     @Override
     protected void initView() {
-
-        sp= getSharedPreferences("wb",MODE_PRIVATE);
+        sp = SpUtils.getInternsp().getSp();
         edit=sp.edit();
+
+        sp.edit().putBoolean("cheapi",false).commit();
         boolean jzs = sp.getBoolean("jz", false);
         if (jzs){
             String phones = sp.getString("phones", null);
@@ -66,13 +79,15 @@ public class LadingActivity extends UActivity<LadingContract.LModel,LadingContra
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     jz.setChecked(true);
+
                 }
             }
         });
+
         boolean zds = sp.getBoolean("zd", false);
         if (zds){
             zd.setChecked(true);
-            startActivity(new Intent(LadingActivity.this,FragmentActivity.class));
+            startActivity(new Intent(LadingActivity.this,ButtomActivity.class));
             finish();
         }
 
@@ -111,8 +126,6 @@ public class LadingActivity extends UActivity<LadingContract.LModel,LadingContra
                if (zd.isChecked()){
                    edit.putBoolean("zd",true);
                    edit.commit();
-                   startActivity(new Intent(LadingActivity.this,FragmentActivity.class));
-                   finish();
                }
 
               HashMap<String,String> param =new HashMap<>();
@@ -120,11 +133,47 @@ public class LadingActivity extends UActivity<LadingContract.LModel,LadingContra
               param.put("pwd", encrypt);
               presenter.Lading(param);
 
+
           }
       });
+      //微信
+        weixin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UMShareConfig config = new UMShareConfig();
+                config.isNeedAuthOnGetUserInfo(true);
+                UMShareAPI.get(LadingActivity.this).setShareConfig(config);
+               UMShareAPI.get(LadingActivity.this).getPlatformInfo(LadingActivity.this, SHARE_MEDIA.WEIXIN, new UMAuthListener() {
+                   @Override
+                   public void onStart(SHARE_MEDIA share_media) {
+
+                   }
+
+                   @Override
+                   public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+                       startActivity(new Intent(LadingActivity.this,ButtomActivity.class));
+                         finish();
+                   }
+
+                   @Override
+                   public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+
+                   }
+
+                   @Override
+                   public void onCancel(SHARE_MEDIA share_media, int i) {
+
+                   }
+               });
+            }
+        });
 
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
     @Override
     protected int getLayoutId() {
         return R.layout.activity_lading;
@@ -137,9 +186,17 @@ public class LadingActivity extends UActivity<LadingContract.LModel,LadingContra
             String sessionId = ladingBean.result.sessionId;
             int userId = ladingBean.result.userId;
             presenter.huo(userId+"",sessionId);
-            startActivity(new Intent(LadingActivity.this,FragmentActivity.class));
+            sp.edit().putBoolean("cheapi",true).commit();
+
+            startActivity(new Intent(LadingActivity.this,ButtomActivity.class));
             finish();
         }
+
+
+    }
+
+    @Override
+    public void XiangSuccess(Object o) {
 
     }
 
