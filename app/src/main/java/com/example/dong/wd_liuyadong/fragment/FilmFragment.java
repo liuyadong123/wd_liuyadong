@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.graphics.Color;
 import android.support.transition.AutoTransition;
 import android.support.transition.TransitionManager;
@@ -86,8 +87,6 @@ public class FilmFragment extends BFragment<FragmentContract.FModel,FragmentCont
             rv1.setAdapter(renMenAdapter);
             cinemaFlowAdapter.setDianCallBack(this);
             renMenAdapter.setDianCallBack(this);
-
-
         }
 
 
@@ -121,7 +120,7 @@ public class FilmFragment extends BFragment<FragmentContract.FModel,FragmentCont
 
     @Override
     protected void initView(View view) {
-        EventBus.getDefault().register(this);
+
      HashMap<String,String> params =new HashMap<>();
 
         params.put("page","1");
@@ -174,12 +173,6 @@ public class FilmFragment extends BFragment<FragmentContract.FModel,FragmentCont
 
     @Override
     public void Failure(String msg) {
-
-    }
-    @Subscribe(sticky = true)
-    public  void items(String image)
-    {
-
 
     }
 
@@ -257,13 +250,11 @@ public class FilmFragment extends BFragment<FragmentContract.FModel,FragmentCont
     }
 
 
-
-
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     private void beginDelayedTransition(ViewGroup view) {
         AutoTransition transition = new AutoTransition();
         transition.setDuration(500);
         TransitionManager.beginDelayedTransition(view, transition);
-
     }
 
     private int dip2px(float dpVale) {

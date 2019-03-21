@@ -3,6 +3,8 @@ package com.example.dong.wd_liuyadong.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.dong.wd_liuyadong.R;
+
 public class YiJianActivity extends AppCompatActivity {
 
     @Override

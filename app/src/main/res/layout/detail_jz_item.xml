@@ -12,5 +12,5 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="@dimen/dp_15"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@drawable/com_icon_down_default_xxhdpi"/>
+  />
 </android.support.constraint.ConstraintLayout>

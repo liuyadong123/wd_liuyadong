@@ -13,15 +13,13 @@ import com.example.dong.wd_liuyadong.R;
 import com.example.dong.wd_liuyadong.bean.MovieBean;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.ViewHolder> {
+public class YingyuanAdapter extends RecyclerView.Adapter<YingyuanAdapter.ViewHolder> {
     private Context context;
     private List<MovieBean.Result> list;
-    public CinemaAdapter(Context context) {
+    public YingyuanAdapter(Context context) {
         this.context = context;
         list=new ArrayList<>();
     }
@@ -68,13 +66,13 @@ public class CinemaAdapter extends RecyclerView.Adapter<CinemaAdapter.ViewHolder
             title=itemView.findViewById(R.id.title);
         }
     }
-    private MoiveCallBack dianCallBack;
+    private MoiveCallBacks dianCallBack;
 
-    public void setDianCallBack(MoiveCallBack dianCallBack) {
+    public void setDianCallBacks(MoiveCallBacks dianCallBack) {
         this.dianCallBack = dianCallBack;
     }
 
-    public interface MoiveCallBack{
+    public interface MoiveCallBacks{
         void haha(MovieBean.Result movieBean);
     }
 }

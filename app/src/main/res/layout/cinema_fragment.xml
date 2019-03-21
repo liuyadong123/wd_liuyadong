@@ -1,17 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<<<<<<< HEAD
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/load"
+        android:background="@mipmap/detail_icon_location_default_hdpi"
+        android:layout_width="@dimen/dp_24"
+        android:layout_height="@dimen/dp_24" />
     <TextView
+        android:text="北京"
+        android:textColor="#333333"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintBottom_toBottomOf="@id/load"
+        android:layout_marginLeft="@dimen/dp_6"
+        app:layout_constraintLeft_toRightOf="@id/load"
+        app:layout_constraintTop_toTopOf="@id/load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_marginTop="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@id/load"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
+            <RadioButton
+                android:id="@+id/btn11"
+                android:checked="true"
+                android:background="@drawable/shape_select_radio"
+                android:gravity="center"
+                android:text="推荐影院"
+                android:textSize="@dimen/sp_12"
+                android:layout_width="@dimen/dp_83"
+                android:textColor="@drawable/che_lie_text"
+                android:layout_height="@dimen/dp_25"
+                android:button="@null" />
+            <RadioButton
+                android:button="@null"
+                android:id="@+id/btn12"
+                android:text="附近影院"
+                android:textColor="@drawable/che_lie_text"
+                android:textSize="@dimen/sp_12"
+                android:gravity="center"
+                android:background="@drawable/shape_select_radio"
+                android:layout_marginHorizontal="@dimen/dp_25"
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="@dimen/dp_25"/>
+        </RadioGroup>
+    </android.support.constraint.ConstraintLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        app:layout_constraintTop_toBottomOf="@id/layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="影院"
-        android:gravity="center"
-        android:textSize="@dimen/dp_80"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/dp_24"
+        android:layout_height="0dp"></android.support.v4.view.ViewPager>
 
-        />
-=======
-
->>>>>>> 10fff2110087131712e10ae90355f2590acf4ad3
 </android.support.constraint.ConstraintLayout>

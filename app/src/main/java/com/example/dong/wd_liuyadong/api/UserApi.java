@@ -9,5 +9,10 @@ public class UserApi {
     public static final String Guanzhu_Api="movieApi/movie/v1/verify/followMovie";
     public static final String Quxiao_Api="  movieApi/movie/v1/verify/cancelFollowMovie";
     public static final String Xiang_Api="  movieApi/movie/v1/findMoviesDetail";
+    public static final String Tui_Api=" movieApi/cinema/v1/findRecommendCinemas";
+    public static final String Fu_Api="  movieApi/cinema/v1/findNearbyCinemas";
+    public static final String Xingxi_Api=" movieApi/user/v1/verify/getUserInfoByUserId";
+    public static final String YingPing_Api="movieApi/movie/v1/findAllMovieComment";
+
 
 }

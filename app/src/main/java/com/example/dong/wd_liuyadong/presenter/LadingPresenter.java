@@ -45,5 +45,35 @@ public class LadingPresenter extends LadingContract.Contract {
         });
     }
 
+    @Override
+    public void Tui(HashMap<String, String> params) {
+        model.TuiModel(params, new RequestCallbacks() {
+            @Override
+            public void OnSuccess(Object o) {
+                view.XiangSuccess(o);
+            }
+
+            @Override
+            public void Failure(String msg) {
+                view.Failure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void Ying(HashMap<String, String> params) {
+       model.YingModel(params, new RequestCallbacks() {
+           @Override
+           public void OnSuccess(Object o) {
+               view.XiangSuccess(o);
+           }
+
+           @Override
+           public void Failure(String msg) {
+            view.Failure(msg);
+           }
+       });
+    }
+
 
 }

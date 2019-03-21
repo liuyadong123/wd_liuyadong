@@ -1,9 +1,12 @@
 package com.example.dong.wd_liuyadong.net;
 
 import com.example.dong.wd_liuyadong.bean.GuanBean;
+import com.example.dong.wd_liuyadong.bean.MovieBean;
 import com.example.dong.wd_liuyadong.bean.QuXiaoBean;
 import com.example.dong.wd_liuyadong.bean.ReMenBean;
 import com.example.dong.wd_liuyadong.bean.XiangBean;
+import com.example.dong.wd_liuyadong.bean.XinxiBean;
+import com.example.dong.wd_liuyadong.bean.YingPing;
 
 import java.util.HashMap;
 
@@ -30,4 +33,10 @@ public interface RxRetrofitView {
     Observable<QuXiaoBean> quxiao(@Url String url, @QueryMap HashMap<String,String> prams);
     @GET
     Observable<XiangBean> xiang(@Url String url, @QueryMap HashMap<String,String> prams);
+    @GET
+    Observable<MovieBean> tui(@Url String url, @QueryMap HashMap<String,String> prams);
+    @GET
+    Observable<XinxiBean> xin(@Url String url, @QueryMap HashMap<String,String> prams);
+    @GET
+    Observable<YingPing> ying(@Url String url, @QueryMap HashMap<String,String> prams);
 }

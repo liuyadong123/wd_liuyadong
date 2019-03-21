@@ -1,4 +1,4 @@
-package com.dc.kwjsons.adapter;
+package com.example.dong.wd_liuyadong.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,8 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.dc.kwjsons.R;
-import com.dc.kwjsons.bean.DateilBean;
+import com.example.dong.wd_liuyadong.R;
+import com.example.dong.wd_liuyadong.bean.XiangBean;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +21,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MyDetailJzAdapter extends RecyclerView.Adapter<MyDetailJzAdapter.MyViewHolder> {
-    Context context;
-    DateilBean list;
+    private Context context;
+   private XiangBean list;
 
-    public MyDetailJzAdapter(Context context, DateilBean list) {
+    public MyDetailJzAdapter(Context context, XiangBean list) {
         this.context = context;
         this.list = list;
     }
@@ -37,13 +38,13 @@ public class MyDetailJzAdapter extends RecyclerView.Adapter<MyDetailJzAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-        List<String> posterList = list.getPosterList();
+        List<String> posterList = list.getResult().getPosterList();
         Glide.with(context).load(posterList.get(i)).into(myViewHolder.img);
     }
 
     @Override
     public int getItemCount() {
-        return list.getPosterList().size();
+        return list.getResult().getPosterList().size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

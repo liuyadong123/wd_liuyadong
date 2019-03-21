@@ -1,10 +1,14 @@
 package com.example.dong.wd_liuyadong.model;
 
 import android.annotation.SuppressLint;
+import android.net.Uri;
+import android.view.View;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.example.dong.wd_liuyadong.api.UserApi;
+import com.example.dong.wd_liuyadong.bean.MovieBean;
 import com.example.dong.wd_liuyadong.bean.XiangBean;
+import com.example.dong.wd_liuyadong.bean.YingPing;
 import com.example.dong.wd_liuyadong.contract.LadingContract;
 import com.example.dong.wd_liuyadong.net.RequestCallback;
 import com.example.dong.wd_liuyadong.net.RequestCallbacks;
@@ -65,6 +69,42 @@ public class LadingModel implements LadingContract.LModel {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         callback.Failure("开小差了");
+                    }
+                });
+    }
+
+    @Override
+    public void TuiModel(HashMap<String, String> params, final RequestCallbacks callback) {
+         RetrofitUtils.getIntenter().createService(RxRetrofitView.class)
+                 .tui(UserApi.Tui_Api,params)
+                 .compose(RxUtils.<MovieBean>schdulers())
+                 .subscribe(new Consumer<MovieBean>() {
+                     @Override
+                     public void accept(MovieBean movieBean) throws Exception {
+                             callback.OnSuccess(movieBean);
+                     }
+                 }, new Consumer<Throwable>() {
+                     @Override
+                     public void accept(Throwable throwable) throws Exception {
+                         callback.Failure("开小差了");
+                     }
+                 });
+    }
+
+    @Override
+    public void YingModel(HashMap<String, String> params, final RequestCallbacks callback) {
+        RetrofitUtils.getIntenter().createService(RxRetrofitView.class)
+                .ying(UserApi.YingPing_Api,params)
+                .compose(RxUtils.<YingPing>schdulers())
+                .subscribe(new Consumer<YingPing>() {
+                    @Override
+                    public void accept(YingPing yingPing) throws Exception {
+                        callback.OnSuccess(yingPing);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        callback.Failure("没网了啊");
                     }
                 });
     }

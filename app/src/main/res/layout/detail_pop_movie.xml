@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ffffff">
+    android:layout_height="wrap_content">
+ <android.support.constraint.ConstraintLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:background="#ffffff">
+
     <View
         android:id="@+id/back"
         android:layout_width="0dp"
@@ -323,6 +328,7 @@
         android:textSize="@dimen/sp_12"
         android:textColor="#333333"
         android:text="Quinn Mckenna"/>
+
     <View
         android:layout_width="@dimen/dp_0"
         android:layout_height="@dimen/dp_2"
@@ -332,4 +338,5 @@
         android:background="#f2f2f2"
         android:layout_marginTop="@dimen/dp_10"
         />
-</android.support.constraint.ConstraintLayout>
+ </android.support.constraint.ConstraintLayout>
+</ScrollView>

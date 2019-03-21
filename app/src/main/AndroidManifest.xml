@@ -41,7 +41,13 @@
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".activity.ButActivity" />
-        <activity android:name=".activity.DetailsActivity"></activity>
+        <activity android:name=".activity.DetailsActivity" />
+        <activity android:name=".activity.MovieActivity" />
+        <activity android:name=".activity.XingxiActivity" />
+        <activity android:name=".activity.GuanzhuActivity" />
+        <activity android:name=".activity.GouPiaoActivity" />
+        <activity android:name=".activity.YiJianActivity" />
+        <activity android:name=".activity.DianActivity"></activity>
     </application>
 
 </manifest>

@@ -19,6 +19,8 @@ public interface LadingContract {
         public abstract  void Lading(HashMap<String,String> params);
         public abstract  void huo(String userId,String sessionId);
         public abstract void Xiang(HashMap<String,String> params);
+        public abstract void Tui(HashMap<String,String> params);
+        public abstract void Ying(HashMap<String,String> params);
 
     }
 
@@ -26,6 +28,8 @@ public interface LadingContract {
         void LadingModel(HashMap<String,String> params, RequestCallback callback);
         void huoModel(String userId,String sessionId);
         void XiangModel(HashMap<String,String> params, RequestCallbacks callback);
+        void TuiModel(HashMap<String,String> params, RequestCallbacks callback);
+        void YingModel(HashMap<String,String> params, RequestCallbacks callback);
 
     }
     interface  LView extends UView {
