@@ -1,4 +1,4 @@
-package com.example.dong.wd_liuyadong.bean;
+package com.example.dong.wd_xiangyi.bean;
 
 public class RegisterBean {
 

@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
+<<<<<<< HEAD
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -10,4 +11,7 @@
         android:textSize="@dimen/dp_80"
 
         />
+=======
+
+>>>>>>> 10fff2110087131712e10ae90355f2590acf4ad3
 </android.support.constraint.ConstraintLayout>

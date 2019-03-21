@@ -1,22 +1,17 @@
-package com.example.dong.wd_liuyadong.activity;
+package com.example.dong.wd_xiangyi.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.example.dong.wd_liuyadong.R;
-import com.example.dong.wd_liuyadong.adapter.ViewPagerAdapter;
-import com.example.dong.wd_liuyadong.bean.LadingBean;
-import com.example.dong.wd_liuyadong.contract.Contract;
-import com.example.dong.wd_liuyadong.presenter.Presenter;
+import com.example.dong.wd_xiangyi.R;
+import com.example.dong.wd_xiangyi.adapter.ViewPagerAdapter;
+import com.example.dong.wd_xiangyi.contract.Contract;
+import com.example.dong.wd_xiangyi.presenter.Presenter;
 
 import com.example.lib_core.mvp.UActivity;
 import com.example.lib_core.mvp.UPresenter;
@@ -26,8 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-
-import butterknife.Unbinder;
 
 public class MainActivity extends UActivity<Contract.IModel,Contract.presenterContract> implements Contract.IView {
 

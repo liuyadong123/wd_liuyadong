@@ -1,12 +1,8 @@
-package com.example.dong.wd_liuyadong.contract;
+package com.example.dong.wd_xiangyi.contract;
 
-import com.example.dong.wd_liuyadong.bean.LadingBean;
-import com.example.dong.wd_liuyadong.model.Model;
-import com.example.dong.wd_liuyadong.net.RequestCallback;
+import com.example.dong.wd_xiangyi.model.Model;
+import com.example.dong.wd_xiangyi.net.RequestCallback;
 
-import com.example.lib_core.mvp.BModel;
-import com.example.lib_core.mvp.BPresenter;
-import com.example.lib_core.mvp.UActivity;
 import com.example.lib_core.mvp.UModel;
 import com.example.lib_core.mvp.UPresenter;
 import com.example.lib_core.mvp.UView;
