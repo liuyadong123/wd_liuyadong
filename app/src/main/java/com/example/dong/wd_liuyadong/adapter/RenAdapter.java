@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,15 +49,21 @@ public class RenAdapter extends RecyclerView.Adapter<RenAdapter.CineVH> {
         cineVH.imageView.setController(draweeController);
         cineVH.name.setText(list.get(i).getName());
         cineVH.jan.setText(list.get(i).getSummary());
-        cineVH.hong.setChecked(list.get(i).isChebox());
-        cineVH.hong.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                    EventBus.getDefault().postSticky(list.get(i).getId()+"");
+          cineVH.hong.setChecked(list.get(i).Chebox);
+        cineVH.hong.setChecked(list.get(i).Cheboxs);
+         cineVH.hong.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+             @Override
+             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                  if (isChecked){
+                          dianCallBack.guanzhu(list.get(i).getId()+"");
+                  }else {
+                          dianCallBack.weiguanzhu(list.get(i).getId()+"");
 
-            }
-        });
+                  }
+
+             }
+         });
+
         cineVH.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,5 +98,7 @@ public class RenAdapter extends RecyclerView.Adapter<RenAdapter.CineVH> {
 
     public interface XiangCallBack{
         void haha(String id);
+        void guanzhu(String id);
+        void weiguanzhu(String id);
     }
 }

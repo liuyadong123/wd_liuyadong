@@ -13,6 +13,7 @@ import com.example.dong.wd_liuyadong.adapter.RenMenAdapter;
 import com.example.dong.wd_liuyadong.bean.GuanBean;
 import com.example.dong.wd_liuyadong.bean.QuXiaoBean;
 import com.example.dong.wd_liuyadong.bean.ReMenBean;
+import com.example.dong.wd_liuyadong.bean.XiangBean;
 import com.example.dong.wd_liuyadong.contract.FragmentContract;
 import com.example.dong.wd_liuyadong.presenter.FragmentPresenter;
 import com.example.lib_core.mvp.BFragment;
@@ -30,12 +31,14 @@ public class ReMenFragment extends BFragment<FragmentContract.FModel,FragmentCon
     @BindView(R.id.rerv)
     RecyclerView rerv;
     private ReMenBean reMenBean;
+    private RenAdapter renMenAdapter;
 
     @Override
     public void Success(Object o) {
-        reMenBean = (ReMenBean) o;
+
         if (o instanceof  ReMenBean){
-            RenAdapter renMenAdapter =new RenAdapter(getActivity(), reMenBean.getResult());
+            reMenBean = (ReMenBean) o;
+            RenAdapter renMenAdapter = new RenAdapter(getActivity(), reMenBean.getResult());
             rerv.setAdapter(renMenAdapter);
             rerv.setLayoutManager(new LinearLayoutManager(getActivity()));
             renMenAdapter.setDianCallBack(this);
@@ -55,13 +58,21 @@ public class ReMenFragment extends BFragment<FragmentContract.FModel,FragmentCon
 
     @Override
     public void Guanzhu(Object o) {
-        GuanBean guanBean = (GuanBean) o;
+
         if (o instanceof  GuanBean){
+            GuanBean guanBean = (GuanBean) o;
             Toast.makeText(getActivity(),guanBean.message,Toast.LENGTH_SHORT).show();
+            if ("关注成功".equals(guanBean.message)){
+                reMenBean.getResult().get(0).isChebox();
+            }
         }
-        QuXiaoBean quXiaoBean = (QuXiaoBean) o;
+
         if (o instanceof  QuXiaoBean){
+            QuXiaoBean quXiaoBean = (QuXiaoBean) o;
             Toast.makeText(getActivity(),quXiaoBean.message,Toast.LENGTH_SHORT).show();
+            if ("取消关注成功".equals(quXiaoBean.message)){
+                reMenBean.getResult().get(0).isCheboxs();
+            }
         }
 
     }
@@ -74,11 +85,6 @@ public class ReMenFragment extends BFragment<FragmentContract.FModel,FragmentCon
         params.put("page","1");
         params.put("count","5");
         persenter.ReMen(params);
-        if (!EventBus.getDefault().isRegistered(this))
-        {
-            EventBus.getDefault().register(this);
-        }
-
 
     }
 
@@ -96,33 +102,26 @@ public class ReMenFragment extends BFragment<FragmentContract.FModel,FragmentCon
     public void Failure(String msg) {
 
     }
-    @Subscribe(sticky = true)
-    public  void checkboxs(String id){
-        if (reMenBean.getResult().get(0).isChebox()==true){
-            HashMap<String,String> paramss =new HashMap<>();
-            paramss.put("movieId",id);
-            persenter.Guan(paramss);
-        }else {
-            HashMap<String,String> paramss =new HashMap<>();
-            paramss.put("movieId",id);
-            persenter.Qu(paramss);
-        }
 
-
-
-    }
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
 
     @Override
     public void haha(String id) {
         Intent intent = new Intent(getActivity(), DetailsActivity.class);
         intent.putExtra("id",id);
         startActivity(intent);
+    }
+
+    @Override
+    public void guanzhu(String id) {
+        HashMap<String,String> parames =new HashMap<>();
+        parames.put("movieId",id);
+        persenter.Guan(parames);
+    }
+
+    @Override
+    public void weiguanzhu(String id) {
+        HashMap<String,String> parame =new HashMap<>();
+        parame.put("movieId",id);
+        persenter.Qu(parame);
     }
 }

@@ -6,7 +6,9 @@ import android.view.View;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.example.dong.wd_liuyadong.api.UserApi;
+import com.example.dong.wd_liuyadong.bean.LobbyInfo;
 import com.example.dong.wd_liuyadong.bean.MovieBean;
+import com.example.dong.wd_liuyadong.bean.ReMenBean;
 import com.example.dong.wd_liuyadong.bean.XiangBean;
 import com.example.dong.wd_liuyadong.bean.YingPing;
 import com.example.dong.wd_liuyadong.contract.LadingContract;
@@ -108,6 +110,26 @@ public class LadingModel implements LadingContract.LModel {
                     }
                 });
     }
+
+    @Override
+    public void LoabbyModel(HashMap<String, String> params, final RequestCallbacks callback) {
+        RetrofitUtils.getIntenter().createService(RxRetrofitView.class)
+                .loabby(UserApi.Loabb_Api,params)
+                .compose(RxUtils.<LobbyInfo>schdulers())
+                .subscribe(new Consumer<LobbyInfo>() {
+                    @Override
+                    public void accept(LobbyInfo lobbyInfo) throws Exception {
+                       callback.OnSuccess(lobbyInfo);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                         callback.Failure("没网了");
+                    }
+                });
+    }
+
+
 
 
 }

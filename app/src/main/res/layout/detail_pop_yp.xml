@@ -45,6 +45,17 @@
             >
 
         </com.jcodecraeer.xrecyclerview.XRecyclerView>
+         <ImageView
+             android:id="@+id/xie"
+             android:layout_width="@dimen/dp_60"
+             android:layout_height="@dimen/dp_60"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintRight_toRightOf="parent"
+             android:layout_marginRight="@dimen/dp_24"
+             android:layout_marginBottom="@dimen/dp_20"
+             android:background="@mipmap/com_icon_publish_default_hdpi"
+             />
+
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

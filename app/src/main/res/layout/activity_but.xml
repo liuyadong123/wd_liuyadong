@@ -33,14 +33,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <RadioGroup
-            android:id="@+id/group"
+            android:id="@+id/groups"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true">
             <RadioButton
-                android:id="@+id/btn1"
+                android:id="@+id/btn1s"
                 android:checked="true"
                 android:background="@drawable/shape_select_radio"
                 android:gravity="center"
@@ -52,7 +52,7 @@
                 android:button="@null" />
             <RadioButton
                 android:button="@null"
-                android:id="@+id/btn2"
+                android:id="@+id/btn2s"
                 android:text="正在热播"
                 android:textColor="@drawable/che_lie_text"
                 android:textSize="@dimen/sp_12"
@@ -62,7 +62,7 @@
                 android:layout_width="@dimen/dp_83"
                 android:layout_height="@dimen/dp_25"/>
             <RadioButton
-                android:id="@+id/btn3"
+                android:id="@+id/btn3s"
                 android:gravity="center"
                 android:text="即将上映"
                 android:textColor="@drawable/che_lie_text"
@@ -74,7 +74,7 @@
         </RadioGroup>
     </android.support.constraint.ConstraintLayout>
     <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+        android:id="@+id/pagers"
         app:layout_constraintTop_toBottomOf="@id/layout"
         android:layout_width="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

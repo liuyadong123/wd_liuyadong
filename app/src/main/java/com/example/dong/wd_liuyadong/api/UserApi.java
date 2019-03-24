@@ -13,6 +13,9 @@ public class UserApi {
     public static final String Fu_Api="  movieApi/cinema/v1/findNearbyCinemas";
     public static final String Xingxi_Api=" movieApi/user/v1/verify/getUserInfoByUserId";
     public static final String YingPing_Api="movieApi/movie/v1/findAllMovieComment";
+    public static final String Loabb_Api=" movieApi/movie/v1/findMovieScheduleList";
+    public static final String Shang_Api="movieApi/user/v1/verify/uploadHeadPic";
+
 
 
 }

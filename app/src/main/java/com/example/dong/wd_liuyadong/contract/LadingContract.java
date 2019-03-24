@@ -21,7 +21,7 @@ public interface LadingContract {
         public abstract void Xiang(HashMap<String,String> params);
         public abstract void Tui(HashMap<String,String> params);
         public abstract void Ying(HashMap<String,String> params);
-
+        public abstract void Loabby(HashMap<String,String> params);
     }
 
     interface  LModel extends UModel {
@@ -30,6 +30,8 @@ public interface LadingContract {
         void XiangModel(HashMap<String,String> params, RequestCallbacks callback);
         void TuiModel(HashMap<String,String> params, RequestCallbacks callback);
         void YingModel(HashMap<String,String> params, RequestCallbacks callback);
+        void LoabbyModel(HashMap<String,String> params, RequestCallbacks callback);
+
 
     }
     interface  LView extends UView {

@@ -1,9 +1,12 @@
 package com.example.dong.wd_liuyadong.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.example.dong.wd_liuyadong.R;
+import com.example.dong.wd_liuyadong.activity.CinemaActivity;
+import com.example.dong.wd_liuyadong.activity.DianActivity;
 import com.example.dong.wd_liuyadong.activity.MovieActivity;
 import com.example.dong.wd_liuyadong.adapter.CinemaAdapter;
 import com.example.dong.wd_liuyadong.adapter.YingyuanAdapter;
@@ -14,6 +17,8 @@ import com.example.dong.wd_liuyadong.presenter.FragmentPresenter;
 import com.example.lib_core.mvp.BFragment;
 import com.example.lib_core.mvp.BPresenter;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 
@@ -60,7 +65,8 @@ public class TuiFragment extends BFragment<CinemaContract.CModle,CinemaContract.
 
     @Override
     public void haha(MovieBean.Result movieBean) {
-
+        EventBus.getDefault().postSticky(movieBean);
+        startActivity(new Intent(getActivity(),CinemaActivity.class));
 
     }
 }

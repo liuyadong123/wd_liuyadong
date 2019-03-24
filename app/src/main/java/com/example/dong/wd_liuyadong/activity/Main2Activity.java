@@ -17,7 +17,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class Main2Activity extends AppCompatActivity {
-
     private Unbinder bind;
     @BindView(R.id.image)
     RelativeLayout image;

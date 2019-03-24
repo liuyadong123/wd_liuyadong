@@ -10,5 +10,9 @@ public class MovieBean {
         public String address;
         public String logo;
         public String name;
+        public  int id;
+        public String followCinema;
+        public String commentTotal;
+        public String distance;
     }
 }

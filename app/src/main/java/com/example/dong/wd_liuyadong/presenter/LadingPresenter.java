@@ -75,5 +75,23 @@ public class LadingPresenter extends LadingContract.Contract {
        });
     }
 
+    @Override
+    public void Loabby(HashMap<String, String> params) {
+        model.LoabbyModel(params, new RequestCallbacks() {
+            @Override
+            public void OnSuccess(Object o) {
+                view.XiangSuccess(o);
+            }
+
+            @Override
+            public void Failure(String msg) {
+
+                view.Failure(msg);
+            }
+        });
+    }
+
+
+
 
 }

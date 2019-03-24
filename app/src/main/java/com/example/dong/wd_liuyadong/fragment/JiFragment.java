@@ -10,6 +10,7 @@ import com.example.dong.wd_liuyadong.R;
 import com.example.dong.wd_liuyadong.activity.DetailsActivity;
 import com.example.dong.wd_liuyadong.adapter.RenAdapter;
 import com.example.dong.wd_liuyadong.bean.GuanBean;
+import com.example.dong.wd_liuyadong.bean.QuXiaoBean;
 import com.example.dong.wd_liuyadong.bean.ReMenBean;
 import com.example.dong.wd_liuyadong.contract.FragmentContract;
 import com.example.dong.wd_liuyadong.presenter.FragmentPresenter;
@@ -53,6 +54,10 @@ public class JiFragment extends BFragment<FragmentContract.FModel,FragmentContra
     if (o instanceof  GuanBean){
       Toast.makeText(getActivity(),guanBean.message,Toast.LENGTH_SHORT).show();
     }
+    QuXiaoBean quXiaoBean = (QuXiaoBean) o;
+    if (o instanceof  QuXiaoBean){
+      Toast.makeText(getActivity(),quXiaoBean.message,Toast.LENGTH_SHORT).show();
+    }
   }
 
   @Override
@@ -62,10 +67,7 @@ public class JiFragment extends BFragment<FragmentContract.FModel,FragmentContra
       parames.put("page","1");
       parames.put("count","5");
       persenter.Ji(parames);
-    if (!EventBus.getDefault().isRegistered(this))
-    {
-      EventBus.getDefault().register(this);
-    }
+
     }
 
     @Override
@@ -82,24 +84,26 @@ public class JiFragment extends BFragment<FragmentContract.FModel,FragmentContra
     public void Failure(String msg) {
 
     }
-  @Subscribe(sticky = true)
-  public  void checkboxs(String id){
 
-    HashMap<String,String> paramss =new HashMap<>();
-    paramss.put("movieId",id);
-    persenter.Guan(paramss);
-
-  }
-  @Override
-  public void onDestroy() {
-    super.onDestroy();
-    EventBus.getDefault().unregister(this);
-  }
 
   @Override
   public void haha(String id) {
     Intent intent = new Intent(getActivity(), DetailsActivity.class);
     intent.putExtra("id",id);
     startActivity(intent);
+  }
+
+  @Override
+  public void guanzhu(String id) {
+    HashMap<String,String> parames =new HashMap<>();
+    parames.put("movieId",id);
+    persenter.Guan(parames);
+  }
+
+  @Override
+  public void weiguanzhu(String id) {
+    HashMap<String,String> parame =new HashMap<>();
+    parame.put("movieId",id);
+    persenter.Qu(parame);
   }
 }

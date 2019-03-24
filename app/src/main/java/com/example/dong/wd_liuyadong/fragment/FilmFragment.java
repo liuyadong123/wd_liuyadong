@@ -78,9 +78,11 @@ public class FilmFragment extends BFragment<FragmentContract.FModel,FragmentCont
 
     @Override
     public void Success(Object o) {
-        ReMenBean bean= (ReMenBean) o;
+
         if (o instanceof ReMenBean){
-          cinemaFlowAdapter=new CinemaFlowAdapter(getActivity(),bean.getResult());
+            ReMenBean bean= (ReMenBean) o;
+            EventBus.getDefault().postSticky(bean);
+            cinemaFlowAdapter=new CinemaFlowAdapter(getActivity(),bean.getResult());
             flow.setAdapter(cinemaFlowAdapter);
             flow.scrollToPosition(2);
             renMenAdapter = new RenMenAdapter(getActivity(),bean.getResult());
@@ -94,8 +96,9 @@ public class FilmFragment extends BFragment<FragmentContract.FModel,FragmentCont
 
     @Override
     public void Zhengzai(Object o) {
-        ReMenBean bean= (ReMenBean) o;
+
         if (o instanceof ReMenBean) {
+            ReMenBean bean= (ReMenBean) o;
             zhengMenAdapter = new ZhengMenAdapter(getActivity(),bean.getResult());
             rv2.setAdapter(zhengMenAdapter);
             zhengMenAdapter.setDianCallBack(this);
@@ -105,8 +108,9 @@ public class FilmFragment extends BFragment<FragmentContract.FModel,FragmentCont
 
     @Override
     public void Jijiang(Object o) {
-        ReMenBean bean= (ReMenBean) o;
+
         if (o instanceof ReMenBean) {
+            ReMenBean bean= (ReMenBean) o;
             jiAdapter = new JiAdapter(getActivity(),bean.getResult());
             rv3.setAdapter(jiAdapter);
             jiAdapter.setDianCallBack(this);
@@ -120,9 +124,7 @@ public class FilmFragment extends BFragment<FragmentContract.FModel,FragmentCont
 
     @Override
     protected void initView(View view) {
-
      HashMap<String,String> params =new HashMap<>();
-
         params.put("page","1");
         params.put("count","5");
         persenter.ReMen(params);

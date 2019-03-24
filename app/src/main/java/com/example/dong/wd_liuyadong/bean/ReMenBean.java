@@ -44,7 +44,9 @@ public class ReMenBean {
         private String name;
         private int rank;
         private String summary;
-        private  boolean Chebox;
+        public   boolean Chebox=true;
+        public   boolean Cheboxs=false;
+
 
         public boolean isChebox() {
             return Chebox;
@@ -52,6 +54,14 @@ public class ReMenBean {
 
         public void setChebox(boolean chebox) {
             Chebox = chebox;
+        }
+
+        public boolean isCheboxs() {
+            return Cheboxs;
+        }
+
+        public void setCheboxs(boolean cheboxs) {
+            Cheboxs = cheboxs;
         }
 
         public int getFollowMovie() {

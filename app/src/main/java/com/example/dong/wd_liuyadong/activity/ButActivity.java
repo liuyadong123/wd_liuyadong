@@ -30,15 +30,15 @@ import butterknife.Unbinder;
 public class ButActivity extends AppCompatActivity {
     private Unbinder bind;
 
-    @BindView(R.id.pager)
+    @BindView(R.id.pagers)
     ViewPager pager;
-    @BindView(R.id.btn1)
+    @BindView(R.id.btn1s)
     RadioButton btn1;
-    @BindView(R.id.btn2)
+    @BindView(R.id.btn2s)
     RadioButton btn2;
-    @BindView(R.id.btn3)
+    @BindView(R.id.btn3s)
     RadioButton btn3;
-    @BindView(R.id.group)
+    @BindView(R.id.groups)
     RadioGroup group;
     @BindView(R.id.back)
     ImageView back;
@@ -76,13 +76,13 @@ public class ButActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
-                    case R.id.btn1:
+                    case R.id.btn1s:
                         pager.setCurrentItem(0);
                         break;
-                    case R.id.btn2:
+                    case R.id.btn2s:
                         pager.setCurrentItem(1);
                         break;
-                    case R.id.btn3:
+                    case R.id.btn3s:
                         pager.setCurrentItem(2);
                         break;
                 }
@@ -106,7 +106,7 @@ public class ButActivity extends AppCompatActivity {
                         btn2.setChecked(true);
                         break;
                     case 2:
-                        btn3.setChecked(true);
+                         btn3.setChecked(true);
                         break;
 
                 }

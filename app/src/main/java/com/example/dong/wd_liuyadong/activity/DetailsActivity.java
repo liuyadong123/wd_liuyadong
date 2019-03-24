@@ -67,16 +67,23 @@ public class DetailsActivity extends UActivity<LadingContract.LModel,LadingContr
     private int id;
     private  int page=1;
     private YingPingAdapter yingPingAdapter;
+    private YingPing yingping;
+    private XRecyclerView rv;
 
     @Override
     protected void initView() {
-
+        ying.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setYing(yingping);
+            }
+        });
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
         HashMap<String,String> paramss =new HashMap<>();
         paramss.put("movieId",id);
         presenter.Xiang(paramss);
-        initDatass();
+
        //返回
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,22 +157,30 @@ public class DetailsActivity extends UActivity<LadingContract.LModel,LadingContr
         }
 
         if (o instanceof  YingPing){
-            final YingPing yingping = (YingPing) o;
-            ying.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setYing(yingping);
+            yingping = (YingPing) o;
+
+            if (page==1){
+                rv.refreshComplete();
+                yingPingAdapter.setList(yingping.getResult());
+            }else {
+                if (yingPingAdapter==null){
+                    yingPingAdapter.setList(yingping.getResult());
+                }else {
+                    yingPingAdapter.AddList(yingping.getResult());
                 }
-            });
+                rv.loadMoreComplete();
+            }
         }
     }
 
     private void setYing(YingPing yingping) {
-        page=1;
+        initDatass();
         View view =LayoutInflater.from(this).inflate(R.layout.detail_pop_yp,null,false);
-        XRecyclerView rv =view.findViewById(R.id.recys);
+        rv = view.findViewById(R.id.recys);
+        ImageView xie =view.findViewById(R.id.xie);
         rv.setLoadingListener(this);
         rv.setLoadingMoreEnabled(true);
+
         yingPingAdapter = new YingPingAdapter(this);
         rv.setAdapter(yingPingAdapter);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -179,17 +194,7 @@ public class DetailsActivity extends UActivity<LadingContract.LModel,LadingContr
                 popupWindow.dismiss();
             }
         });
-        if (page==1){
-            rv.refreshComplete();
-            yingPingAdapter.setList(yingping.getResult());
-        }else {
-            if (yingPingAdapter==null){
-                yingPingAdapter.setList(yingping.getResult());
-            }else {
-                yingPingAdapter.AddList(yingping.getResult());
-            }
-         rv.loadMoreComplete();
-        }
+
 
 
     }
