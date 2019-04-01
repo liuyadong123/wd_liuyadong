@@ -1,14 +1,25 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'walle'
 android {
+
+    signingConfigs {
+        relese {
+            keyAlias 'bw_movie'
+            keyPassword '123456'
+            storeFile file('C:/Users/东哥/Desktop/movie.keystore')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 28
+
     defaultConfig {
-        applicationId "com.example.dong.wd_liuyadong"
-        minSdkVersion 15
-        targetSdkVersion 22
+        applicationId "com.bw.movie"
+        minSdkVersion 22
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
 
         ndk {
             // 设置支持的SO库架构
@@ -16,15 +27,19 @@ android {
         }
         vectorDrawables.useSupportLibrary = true
     }
-
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.relese
         }
     }
-
+    productFlavors {
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
 dependencies {
@@ -38,35 +53,36 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':lib_core')
     implementation project(':lib_netword')
-    //内存检测框架
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
-    // Optional, if you use support library fragments:
-    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
-    //anr性能优化框架
-    debugImplementation 'com.letv.sarrsdesktop:BlockCanaryExJRT:0.9.9.4'
-    releaseImplementation 'com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:0.9.9.4'
-    testImplementation 'com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:0.9.9.4'
 
+    //implementation 'com.github.leifzhang:IjkLib:0.4.3'
+    implementation  'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
+    //内存检测框架
+                        debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+                        releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+                        // Optional, if you use support library fragments:
+                        debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
+                        //anr性能优化框架
+                        debugImplementation 'com.letv.sarrsdesktop:BlockCanaryExJRT:0.9.9.4'
+                        releaseImplementation 'com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:0.9.9.4'
+                        testImplementation 'com.letv.sarrsdesktop:BlockCanaryExJRTNoOp:0.9.9.4'
     //黄油刀
     implementation 'com.jakewharton:butterknife:8.7.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
-
     //图片加载框架，glide
     implementation 'com.github.bumptech.glide:glide:4.1.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     //EventBus
     implementation 'org.greenrobot:eventbus:3.1.1'
-
     //xrecyclerview
     implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
+    implementation(name: 'alipaySdk-15.5.9-20181123210601', ext: 'aar')
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     //bugly
     implementation 'com.tencent.bugly:crashreport:latest.release'
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
     //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
-
     implementation 'com.gyf.immersionbar:immersionbar:2.3.3-beta15'
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
@@ -78,27 +94,15 @@ dependencies {
     //implementation 'com.umeng.sdk:common:latest.integration'
     // implementation 'com.umeng.sdk:analytics:latest.integration'
     implementation 'com.chenlittleping:recyclercoverflow:1.0.6'
-
     //fresco
     implementation 'com.facebook.fresco:fresco:1.5.0'
-
     //cardview
     implementation 'com.android.support:cardview-v7:28.0.0'
 
- /*   // required, enough for most devices
-    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
-    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
-
-   // Other ABIs: optional
-    implementation 'tv.danmaku.ijk.media:ijkplayer-armv5:0.8.8'
-    implementation 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8'
-    implementation 'tv.danmaku.ijk.media:ijkplayer-x86:0.8.8'
-    implementation 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.8.8'
-
-    //ExoPlayer as IMediaPlayer: optional, experimental
-    implementation 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.8'*/
-
     implementation 'com.jph.takephoto:takephoto_library:4.0.3'
+    implementation 'com.android.support:multidex:1.0.1'
+
+    implementation 'com.meituan.android.walle:library:1.1.6'
 
 }
 
@@ -111,4 +115,12 @@ configurations.all {
             }
         }
     }
+}
+walle {
+    // 指定渠道包的输出路径
+    apkOutputFolder = new File("${project.buildDir}/outputs/channels");
+    // 定制渠道包的APK的文件名称
+    apkFileNameFormat = '${appName}-${packageName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk';
+    // 渠道配置文件
+    channelFile = new File("${project.getProjectDir()}/channel")
 }

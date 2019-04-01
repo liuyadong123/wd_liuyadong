@@ -6,7 +6,7 @@
     android:id="@+id/image"
     android:background="@mipmap/qd"
     android:layout_height="match_parent"
-    tools:context=".activity.Main2Activity">
+    tools:context="com.bw.movie.activity.Main2Activity">
         <TextView
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/dp_136"

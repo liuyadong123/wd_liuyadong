@@ -18,11 +18,7 @@ public abstract class BFragment<M extends BModel,P extends  BPresenter> extends 
 
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        persenter.deattach();
-    }
+
 
 
 }

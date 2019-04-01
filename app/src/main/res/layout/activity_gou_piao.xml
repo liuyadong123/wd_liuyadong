@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.GouPiaoActivity">
+    tools:context="com.bw.movie.activity.GouPiaoActivity">
 
 </android.support.constraint.ConstraintLayout>

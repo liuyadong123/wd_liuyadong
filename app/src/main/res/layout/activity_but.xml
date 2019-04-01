@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ButActivity">
+    tools:context="com.bw.movie.activity.ButActivity">
     <ImageView
         android:layout_marginTop="@dimen/dp_30"
         android:layout_marginLeft="@dimen/dp_24"

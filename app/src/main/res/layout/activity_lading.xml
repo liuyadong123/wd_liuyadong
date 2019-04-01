@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@mipmap/bitmap"
-    tools:context=".activity.LadingActivity">
+    tools:context="com.bw.movie.activity.LadingActivity">
 
     <RelativeLayout
         android:layout_marginTop="@dimen/dp_130"
